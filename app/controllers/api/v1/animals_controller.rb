@@ -4,6 +4,10 @@ class Api::V1::AnimalsController < ApplicationController
     render json: Animal.all
   end
 
+  def show
+    render json: Animal.find(params[:id])
+  end
+
   def create
     render json: Animal.create(animal_params)
   end

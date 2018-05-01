@@ -13,6 +13,18 @@ describe "Animals API" do
     expect(animals.count).to eq(3)
   end
 
+  it "sends one animal" do
+    animal = create(:animal)
+
+    get "/api/v1/animals/#{animal.id}"
+
+    expect(response).to be_success
+
+    returned_animal = JSON.parse(response.body)
+
+    expect(returned_animal["name"]).to eq(animal.name)
+  end
+
   it "can create a new animal" do
     animal = { name: "billy", breed: "goat" }
 
